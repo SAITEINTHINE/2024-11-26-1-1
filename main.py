@@ -19,12 +19,18 @@ def index():
 def hello():
     # nameのパラメータを得る --- (*4)
     name = request.args.get('name')
-    if name is None: name = '名無し'
-    # 自己紹介を自動作成
+    comment = request.args.get('comment')
+    if name is None:
+        name = '名無し'
+    if comment is None:
+        comment = '天気がいいから散歩しましょう。'
+# 自己紹介を自動作成
     return """
     <h1>{0}さん、こんにちは！</h1>
-    """.format(name)
+    ひとこと：{1}
+    """.format(name, comment)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
+
 
